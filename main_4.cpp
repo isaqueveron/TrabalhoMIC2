@@ -25,7 +25,7 @@ byte intToByte(int8_t intValue) {
     return (byte)intValue;
 }
 
-void TCP()
+void POS_X()
 {
     if (cl.connected()) //Detecta se há clientes conectados no servidor
     {
@@ -34,8 +34,8 @@ void TCP()
         digitalWrite(GPIO_NUM_2, 1);
         byte received;
         received = cl.read();
-        float erro = (float)byteToInt(received);
-        int u = erro;
+        float x_pos = (float)byteToInt(received);
+        int u = x_pos;
         byte byteToSend = intToByte(u);
         cl.write(byteToSend);
         }
@@ -47,7 +47,7 @@ void TCP()
         delay(50);
     }
 }
-void TCP_1()
+void POS_Y()
 {
     if (cl_1.connected()) //Detecta se há clientes conectados no servidor
     {
@@ -56,8 +56,8 @@ void TCP_1()
         digitalWrite(GPIO_NUM_2, 1);
         byte received_1;
         received_1 = cl_1.read();
-        float erro_1 = (float)byteToInt(received_1);
-        int u_1 = erro_1;
+        float y_pos = (float)byteToInt(received_1);
+        int u_1 = y_pos;
         byte byteToSend_1 = intToByte(u_1);
         cl_1.write(byteToSend_1);
         }
@@ -69,7 +69,7 @@ void TCP_1()
         delay(50);
     }
 }
-void TCP_2()
+void VELO_X()
 {
     if (cl_2.connected()) //Detecta se há clientes conectados no servidor
     {
@@ -78,8 +78,8 @@ void TCP_2()
         digitalWrite(GPIO_NUM_2, 1);
         byte received_2;
         received_2 = cl_2.read();
-        float erro_2 = (float)byteToInt(received_2);
-        int u_2 = erro_2;
+        float x_speed = (float)byteToInt(received_2);
+        int u_2 = x_speed;
         byte byteToSend_2 = intToByte(u_2);
         cl_2.write(byteToSend_2);
         }
@@ -91,7 +91,7 @@ void TCP_2()
         delay(50);
     }
 }
-void TCP_3()
+void VELO_Y()
 {
     if (cl_3.connected()) //Detecta se há clientes conectados no servidor
     {
@@ -100,8 +100,8 @@ void TCP_3()
         digitalWrite(GPIO_NUM_2, 1);
         byte received_3;
         received_3 = cl_3.read();
-        float erro_3 = (float)byteToInt(received_3);
-        int u_3 = erro_3;
+        float y_speed = (float)byteToInt(received_3);
+        int u_3 = y_speed;
         byte byteToSend_3 = intToByte(u_3);
         cl_3.write(byteToSend_3);
         }
@@ -127,9 +127,9 @@ void setup()
 
 void loop()
 {
-    TCP(); //Funçao que gerencia os pacotes e clientes TCP.
-    TCP_1();
-    TCP_2();
-    TCP_3();
+    POS_X(); //Funçao que gerencia os pacotes e clientes TCP.
+    POS_Y();
+    VELO_X();
+    VELO_Y();
 }
 

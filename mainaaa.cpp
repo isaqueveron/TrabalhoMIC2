@@ -62,9 +62,13 @@ int uy_ToSend;
 
 void Control_X(float errox, float velox)
 {
-    Ax = 6*(errox*2) - 6*(velox*0.8);
+    if((errox<0.5)&(errox>-0.5)&(velox<1)&(velox>-1)){Ax = 0;}
+    else
+    {
+    Ax = 6*(errox*1.7) - 6*(velox*0.8);
     if(Ax>Lim_ax){Ax=Lim_ax;}
     if(Ax<-Lim_ax){Ax=-Lim_ax;}
+    }
     Ax = Ax*127/20;
     ux_ToSend = (int)Ax;
 }
